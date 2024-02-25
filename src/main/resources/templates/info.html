@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html th:replace="layout/masterLayout :: layout(~{::main})"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+<main role="main" id="info">
+    <div class="container-fluid bg-light">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-10 ">
+                    <div class="card ">
+                        <div class="card-header">
+                            <h1 class="text-center">Profile Information</h1>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col p-3">
+                                    <h4 class="mb-5">Customer Name:</h4>
+                                    <h4 class="mb-5">PhoneNumber:</h4>
+                                    <h4 class="mb-5">Email Address:</h4>
+                                    <h4 class="mb-5">Billing Address:</h4>
+                                    <h4 class="mb-2">Shipping Address:</h4>
+                                </div>
+                                <div class="col p-3">
+                                    <h4 class=" mb-5 " th:text="${customerInfo.customerName}"></h4>
+                                    <h4 class=" mb-5 " th:text="${customerInfo.phoneNumber}"></h4>
+                                    <h4 class=" mb-5 " th:text="${customerInfo.email}"></h4>
+                                    <h4 class=" mb-5 " th:text="${customerInfo.billingAddress}"></h4>
+                                    <h4 class=" mb-2 " th:text="${customerInfo.shippingAddress}"></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<!--                    <div class="row">-->
+<!--                        <div class="col p-3">-->
+<!--                            <p class="lead h4">Hello ! <span th:text="${customerInfo.customerName}"></span>-->
+<!--                            Your Order cost $<span th:text="${totalPrice}"></span>Are you sure? You want to proceed?</p>-->
+<!--                            <a th:href="@{/auth/login}" class="btn btn-primary">OK</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                <div class="col-md-6 p-4">-->
+                    <div class="row justify-content-center mt-5">
+                        <div class="col-md-10">
+                            <div class="card shadow">
+                                <div class="card-header">
+                                    <h3>Ordered Books</h3>
+                                </div>
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Title</th>
+                                        <th>ISBN</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="item : ${cartItems}" class="justify-content-between">
+                                        <td th:text="${item.id}"></td>
+                                        <td th:text="${item.title}"></td>
+                                        <td th:text="${item.isbn}"></td>
+                                        <td th:text="${item.price}"></td>
+                                        <td th:text="${item.quantity}"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div th:if="${#sets.isEmpty(cartItems)}">
+                                    <h3 class="text-center">You Ordered Nothing.</h3>
+                                    <h3 class="text-center">Please make an Order</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+<!--                </div>-->
+        </div>
+    </div>
+
+</main>
+
+</body>
+</html>
