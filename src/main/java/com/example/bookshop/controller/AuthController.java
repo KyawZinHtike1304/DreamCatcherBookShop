@@ -32,11 +32,7 @@ public class AuthController {
     @RequestMapping("/register")
     public String register(Model model){
         model.addAttribute("customer",new Customer());
-        if(authService.isLoggedIn()){
-            return "redirect:/book/own-library";
-        }else {
-            return "register";
-        }
+        return "register";
     }
 
     @GetMapping("/login-error")

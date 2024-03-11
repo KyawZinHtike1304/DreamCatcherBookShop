@@ -3,6 +3,7 @@ package com.example.bookshop.controller;
 import com.example.bookshop.dto.CartItem;
 import com.example.bookshop.entity.Book;
 import com.example.bookshop.entity.BookId;
+import com.example.bookshop.service.AuthService;
 import com.example.bookshop.service.BookService;
 import com.example.bookshop.service.CartService;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,7 @@ public class CartController {
 
     private final CartService cartService;
     private final BookService bookService;
+    private final AuthService authService;
 
 
     @GetMapping("/clear-cart")
@@ -47,7 +49,12 @@ public class CartController {
         }
         cartService.getCartItems().forEach(System.out::println);
 
-        return "redirect:/register";
+//        return "redirect:/register";
+        if(authService.isLoggedIn()){
+            return "redirect:/book/own-library";
+        }else {
+            return "register";
+        }
     }
 
 
